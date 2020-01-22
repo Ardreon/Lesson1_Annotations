@@ -5,44 +5,37 @@ import com.bank.repository.AccountRepository;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class AccountRepositoryImpl implements AccountRepository {
     Account account;
-    public List<Account> database = new LinkedList<>();
+    public List<Optional<Account>> database = new LinkedList<>();
 
     //creat
     @Override
-    public void save(Account entity) {
+    public void save(Optional<Account> entity) {
         database.add(entity);
     }
 
     @Override
-    public Account findById(Integer id) {
-        Account acc = null;
-        int i = 0;
-        for (Account account : database) {
-            if (account.getId() == id) {
-                acc = database.get(i);
-            }
-            i = i + 1;
-        }
-            return acc;
+    public Optional<Account> findById(Integer id) {
+            return database.get(id);
     }
 
     @Override
     public List<Account> findAll() {
-        return database;
+        return database.toString();
     }
 
     @Override
     public void update(Account entity) {
-       database.toString();
+
+        database.toString();
     }
 
     @Override
     public void deleteById(Integer id) {
-        for (Account account : database)
-            if(account.getId() == id) database.remove(account);
+       database.remove(id);
     }
 
 }
